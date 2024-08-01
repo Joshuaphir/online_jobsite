@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Applicant Dashboard{% endblock %}</title>
+  <!-- Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /*for dashboard section*/
+    .dashboard-section {
+        border: 1px solid #354535;
+        border-radius: 0.5rem;
+        background: white;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Improved box shadow */
+        transition: transform 0.3s ease-in-out;
+    }
+    .dashboard-section:hover {
+        transform: translateY(-4px);
+    }
+    .feature-icon {
+        width: 40px;
+        height: 40px;
+        display: block;
+        margin: auto;
+    }
+
+    /* company css */
+    .section-title {
+        border-bottom: 2px solid #4A90E2;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .key-details p {
+        margin-bottom: 0.5rem;
+    }
+
+    .additional-info p {
+        margin-bottom: 1rem;
+    }
+
+    /* job css */
+    .search-input {
+        border: 1px solid #CBD5E0; 
+        padding: 0.5rem;
+        border-radius: 0.375rem; 
+        width: 100%;
+        max-width: 20rem; 
+    }
+
+    /* applicants css */
+    .form-control {
+        border: 1px solid #ccc;
+        border-radius: 0.375rem; 
+        padding: 0.5rem;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #3182ce; 
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); 
+    }
+
+    .form-signin label {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #2d3748; 
+    }
+
+    .sidebar {
+      height: 100vh;
+      min-height: 100%;
+    }
+    .sidebar a {
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .sidebar a:hover {
+      background-color: #1a202c;
+      color: #63b3ed;
+    }
+    .sidebar .active {
+      background-color: #1a202c;
+      color: #63b3ed;
+    }
+    .section-heading {
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-content {
+      padding: 2rem;
+      background-color: #ffffff;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      min-height: 80vh; /* Minimum height for main content */
+    }
+    .profile-info img {
+      border: 2px solid #e2e8f0;
+      border-radius: 10px; /* Adjusted border radius */
+    }
+    .form-label {
+      font-weight: 600;
+    }
+    .form-input {
+      border: 1px solid #cbd5e0;
+    }
+    .form-input:focus {
+      border-color: #63b3ed;
+      box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.5);
+    }
+    .form-button {
+      background-color: #3182ce;
+      transition: background-color 0.3s;
+    }
+    .form-button:hover {
+      background-color: #2b6cb0;
+    }
+    :root {
+        --main-color: #4a76a8;
+    }
+    .bg-main-color {
+        background-color: var(--main-color);
+    }
+    .text-main-color {
+        color: var(--main-color);
+    }
+    .border-main-color {
+        border-color: var(--main-color);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+  <!-- Header -->
+  <header class="bg-gray-700 text-white shadow-md py-4">
+    <div class="container mx-auto flex justify-between items-center px-6">
+      <div class="text-lg font-semibold">
+        Job Portal
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="mr-4">Hello, {{ user.username }}</div>
+        <a href="{% url 'logout' %}" class="ml-4 text-gray-300 hover:text-white">Logout</a>
+      </div>
+    </div>
+  </header>
+  {% if request.user.has_company %}
+  <!-- Sidebar -->
+  <aside class="sidebar bg-gray-700 text-white w-64 shadow-md fixed top-0 left-0 pt-20">
+    <!-- User Profile Picture -->
+    <div class="flex ml-6 h-20 mb-2">
+      <img src="/path/to/user/profile/picture.png" alt="Profile Picture" class="w-16 h-16 rounded-lg border-2 border-gray-300">
+    </div>
+    <hr class="mx-6 w-16 mb-3">
+    <nav class="space-y-2">
+      <a href="{% url 'dashboard-view' %}" class="block py-3 px-4 rounded">Dashboard</a>
+      <a href="{% url 'company-profile' %}" class="block py-3 px-4 rounded">Company Profile</a>
+      <a href="{% url 'recruiter-applications' %}" class="block py-3 px-4 rounded">Applicants</a>
+      <a href="{% url 'recruiter-joblist' %}" class="block py-3 px-4 rounded">Jobs</a>
+      <a href="{% url 'update-cv-view' %}" class="block py-3 px-4 rounded">Settings</a>
+      <a href="{% url 'update-company' %}" class="block py-3 px-4 rounded">Account</a>
+    </nav>
+  </aside>
+  
+    <!-- Main Content Area -->
+    <main class="ml-64 pt-4"> <!-- Adjusted padding-top to pt-10 -->
+      <div class="container mx-auto p-2">
+         <!-- Messages Section -->
+         {% if messages %}
+         <div class="fixed top-0 left-0 right-0 p-4">
+             {% for message in messages %}
+                 <div class="mb-4 p-4 rounded {{ message.tags }}">
+                     {{ message }}
+                 </div>
+             {% endfor %}
+         </div>
+         {% endif %}
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+  {% else %}
+    <!-- Main Content Area -->
+    <main class="ml-64 pt-4"> <!-- Adjusted padding-top to pt-10 -->
+      <div class="container mx-auto p-2">
+         <!-- Messages Section -->
+         {% if messages %}
+         <div class="fixed top-0 left-0 right-0 p-4">
+             {% for message in messages %}
+                 <div class="mb-4 p-4 rounded {{ message.tags }}">
+                     {{ message }}
+                 </div>
+             {% endfor %}
+         </div>
+         {% endif %}
+        <a href="{% url 'updateResume' %}">create CV</a>
+      </div>
+    </main>
+  {% endif %}
+
+
+  <!-- JavaScript to highlight active link -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const currentPath = window.location.pathname;
+      const links = document.querySelectorAll('.sidebar a');
+      links.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+          link.classList.add('active');
+        }
+      });
+
+      document.querySelectorAll('[data-toggle]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var target = document.querySelector(button.getAttribute('data-toggle'));
+          if (target.classList.contains('hidden')) {
+            target.classList.remove('hidden');
+          } else {
+            target.classList.add('hidden');
+          }
+        });
+      });
+
+      document.querySelectorAll('[data-close]').forEach(function (element) {
+        element.addEventListener('click', function () {
+          var target = document.querySelector(element.getAttribute('data-close'));
+          target.classList.add('hidden');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

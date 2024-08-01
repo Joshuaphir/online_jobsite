@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Details</title>
+    <style>
+        /* Tailwind CSS styles */
+        .custom-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            border-bottom: 2px solid #4A90E2;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4A90E2;
+            cursor: pointer;
+        }
+
+        .content-hidden {
+            display: none;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            padding: 0.5rem 0;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #4A5568;
+        }
+
+        .info-value {
+            color: #718096;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="custom-container">
+        <div class="flex flex-wrap -mx-2">
+            <section class="w-full md:w-1/2 px-2 mb-4">
+                <div class="bg-white p-5 rounded-lg shadow-md h-full flex flex-col">
+                    <div class="section-title" onclick="toggleAccordion(event, 'personal-info')">Personal Information</div>
+                    <div class="content-hidden" id="personal-info">
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="info-label">First Name</div>
+                                <div class="info-value">{{ profile.resume.first_name }}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Last Name</div>
+                                <div class="info-value">{{ profile.resume.surname }}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Gender</div>
+                                <div class="info-value">{{ profile.resume.gender }}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Contact No.</div>
+                                <div class="info-value">{{ profile.resume.contact }}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Current Address</div>
+                                <div class="info-value">{{ profile.resume.address }}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Permanent Address</div>
+                                <div class="info-value">{{ profile.resume.address }}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Email</div>
+                                <div class="info-value">
+                                    <a class="text-blue-500" href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Birthday</div>
+                                <div class="info-value">{{ profile.resume.dateofbirth }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="w-full md:w-1/2 px-2 mb-4">
+                <div class="bg-white p-5 rounded-lg shadow-md h-full flex flex-col">
+                    <div class="section-title" onclick="toggleAccordion(event, 'experience')">Experience</div>
+                    <div class="content-hidden" id="experience">
+                        <div>
+                            <div class="mb-6">
+                                <div class="font-semibold text-blue-500 mb-1">Software Developer</div>
+                                <div class="text-gray-500 mb-1">Company XYZ, June 2022 - Present</div>
+                                <ul class="list-disc list-inside text-gray-700">
+                                    <li>Developed and maintained web applications using Django.</li>
+                                    <li>Collaborated with cross-functional teams to deliver projects on time.</li>
+                                </ul>
+                            </div>
+                            <!-- Add more experience entries as needed -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="flex flex-wrap -mx-2">
+            <section class="w-full md:w-1/2 px-2 mb-4">
+                <div class="bg-white p-5 rounded-lg shadow-md h-full flex flex-col">
+                    <div class="section-title" onclick="toggleAccordion(event, 'skills')">Skills</div>
+                    <div class="content-hidden" id="skills">
+                        <ul class="skills-list">
+                            <li>Python</li>
+                            <li>Django</li>
+                            <li>JavaScript</li>
+                            <li>React.js</li>
+                            <li>HTML/CSS</li>
+                            <li>SQL</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="w-full md:w-1/2 px-2 mb-4">
+                <div class="bg-white p-5 rounded-lg shadow-md h-full flex flex-col">
+                    <div class="section-title" onclick="toggleAccordion(event, 'education')">Education</div>
+                    <div class="content-hidden" id="education">
+                        <div>
+                            <div class="mb-6">
+                                <div class="font-semibold text-blue-500 mb-1">Bachelor of Science in Computer Science</div>
+                                <div class="text-gray-500 mb-1">University of Example, Graduated: May 2022</div>
+                            </div>
+                            <!-- Add more education entries as needed -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="flex flex-wrap -mx-2">
+            <section class="w-full md:w-1/2 px-2 mb-4">
+                <div class="bg-white p-5 rounded-lg shadow-md h-full flex flex-col">
+                    <div class="section-title" onclick="toggleAccordion(event, 'projects')">Projects</div>
+                    <div class="content-hidden" id="projects">
+                        <div>
+                            <div class="mb-6">
+                                <div class="font-semibold text-blue-500 mb-1">Project Title 1</div>
+                                <div class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat ex finibus gravida consectetur.</div>
+                            </div>
+                            <div class="mb-6">
+                                <div class="font-semibold text-blue-500 mb-1">Project Title 2</div>
+                                <div class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat ex finibus gravida consectetur.</div>
+                            </div>
+                            <!-- Add more project entries as needed -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="w-full md:w-1/2 px-2 mb-4">
+                <div class="bg-white p-5 rounded-lg shadow-md h-full flex flex-col">
+                    <div class="section-title" onclick="toggleAccordion(event, 'certifications')">Certifications</div>
+                    <div class="content-hidden" id="certifications">
+                        <div>
+                            <div class="mb-6">
+                                <div class="font-semibold text-blue-500 mb-1">Certified Django Developer</div>
+                                <div class="text-gray-500 mb-1">Django Software Foundation, June 2023</div>
+                            </div>
+                            <!-- Add more certification entries as needed -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(event, sectionId) {
+            var content = document.getElementById(sectionId);
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

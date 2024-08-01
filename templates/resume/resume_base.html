@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Website Title{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .nav-link {
+            color: #cbd5e0;
+            transition: color 0.3s ease;
+            text-decoration: none; /* Ensure no underline by default */
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff;
+            text-decoration: underline; /* Underline on hover and when active */
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+
+    </style>
+    
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Navigation -->
+    <nav class="bg-gray-800 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div>
+                    <a href="#" class="text-xl font-semibold text-white">{{ title }} Page</a>
+                </div>
+                <div>
+                    <ul class="flex space-x-8">
+                        <li><a href="#" class="nav-link text-white hover:text-gray-300">Home</a></li>
+                        <li><a href="{% url 'recruiter_jobs' %}" class="nav-link text-white hover:text-gray-300">Jobs</a></li>
+                        <li><a href="{% url 'updateResume' %}" class="nav-link text-white hover:text-gray-300">Candidates</a></li>
+                        <li><a href="{% url 'recruiter_setting' %}" class="nav-link text-white hover:text-gray-300">Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto py-8">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('.nav-link');
+            const currentUrl = window.location.href;
+
+            links.forEach(link => {
+                if (link.href === currentUrl) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

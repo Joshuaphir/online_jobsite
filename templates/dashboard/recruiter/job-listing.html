@@ -1,0 +1,51 @@
+{% extends 'dashboard/recruiter/base.html' %}
+{% load humanize %}
+
+{% block title %}Jobs Created - Recruiter Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold">Created Jobs</h2>
+        <a href="{% url 'create-job' %}" class="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600">Create Job</a>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="mb-8">
+        <input type="text" id="post-search" class="search-input" placeholder="Search for a Post">
+    </div>
+
+    <!-- Table Section -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300">Post Title</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300">Location</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300">Required Qualification</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300">Date Created</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {% for job in jobs %}
+                <tr>
+                    <td class="px-6 py-4 break-words border border-gray-300">{{ job.title }}</td>
+                    <td class="px-6 py-4 break-words border border-gray-300">{{ job.location }}</td>
+                    <td class="px-6 py-4 break-words border border-gray-300">{{ job.edu_qualification }}</td>
+                    <td class="px-6 py-4 break-words border border-gray-300">{{ job.timestamp|naturaltime }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap border border-gray-300">
+                        <a href="{% url 'recruiter-jobdetails' job.pk %}" class="text-indigo-600 hover:text-indigo-900">View</a>
+                        <a href="{% url 'recruiter-update-job' job.pk %}" class="ml-4 text-green-600 hover:text-blue-900">Edit</a>
+                        <form action="{% url 'recruiter-delete-job' job.pk %}" method="post" class="inline">
+                            {% csrf_token %}
+                            <button type="submit" class="ml-4 text-red-600 hover:text-red-900">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'dashboard/recruiter/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+Update Job
+{% endblock %}
+
+{% block content %}
+
+<div class="container mx-auto p-4 max-w-4xl">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form class="form-signin" method="post" action="">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+                        Title
+                    </label>
+                    {% render_field form.title class="form-control" %}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="location">
+                        Location
+                    </label>
+                    {% render_field form.location class="form-control" %}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="job_type">
+                        Job Type
+                    </label>
+                    {% render_field form.job_type class="form-control" %}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="requirements">
+                        Requirements
+                    </label>
+                    {% render_field form.requirements|attr:"rows:6" class="form-control" %}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="duties">
+                        Duties
+                    </label>
+                    {% render_field form.duties|attr:"rows:6" class="form-control" %}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="company_overview">
+                        Company Overview
+                    </label>
+                    {% render_field form.company_overview|attr:"rows:6" class="form-control" %}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="post_overview">
+                        Post Overview
+                    </label>
+                    {% render_field form.post_overview|attr:"rows:5" class="form-control" %}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="edu_qualification">
+                        Education Qualification
+                    </label>
+                    {% render_field form.edu_qualification|attr:"rows:5" class="form-control" %}
+                </div>
+                <div class="mb-4 flex items-center">
+                    {% render_field form.is_available class="form-checkbox h-5 w-5 text-blue-600 mr-2" %}
+                    <label for="is_available" class="block text-gray-700 text-sm font-bold mb-2">Is Available</label>
+                </div>
+            </div>
+            <div class="flex justify-start mt-4">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

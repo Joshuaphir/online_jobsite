@@ -1,0 +1,122 @@
+
+{% extends 'company/company_base.html' %}
+
+{% block title %}
+Job
+{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container mx-auto py-8 px-4">
+
+        <h1 class="text-3xl font-semibold text-center mb-8">Most Applied Posts</h1>
+
+        <!-- Job Listings with Filters -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Job Card 1 -->
+            <div class="bg-white rounded-lg shadow-lg p-6 transition duration-300 hover:shadow-xl">
+                <h2 class="text-xl font-semibold mb-2">Software Engineer</h2>
+                <p class="text-sm text-gray-600 mb-4">New York</p>
+                <p class="text-sm text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus gravida hendrerit urna eget vestibulum.</p>
+                <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                    view Applicants
+                </button>
+            </div>
+
+            <!-- Job Card 2 -->
+            <div class="bg-white rounded-lg shadow-lg p-6 transition duration-300 hover:shadow-xl">
+                <h2 class="text-xl font-semibold mb-2">Data Analyst</h2>
+                <p class="text-sm text-gray-600 mb-4">San Francisco</p>
+                <p class="text-sm text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus gravida hendrerit urna eget vestibulum.</p>
+                <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                    view Applicants
+                </button>
+            </div>
+
+            <!-- Job Card 3 -->
+            <div class="bg-white rounded-lg shadow-lg p-6 transition duration-300 hover:shadow-xl">
+                <h2 class="text-xl font-semibold mb-2">Marketing Manager</h2>
+                <p class="text-sm text-gray-600 mb-4">London</p>
+                <p class="text-sm text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus gravida hendrerit urna eget vestibulum.</p>
+                <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                    view Applicants
+                </button>
+            </div>
+        </div>
+
+        <!--added job listing header-->
+
+        <div class="bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg overflow-hidden shadow-lg mt-8 mb-12">
+            <div class="p-4">
+                <h2 class="text-2xl font-bold mb-4">Job Pots Details</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center">
+                    <!-- Total Jobs Card -->
+                    <div class="bg-white rounded-lg p-4 shadow-md">
+                        <h3 class="text-lg font-semibold mb-2">Total Job Posts</h3>
+                        <p class="text-gray-600">100</p>
+                    </div>
+                    
+                    <!-- Total Departments for Posts Card -->
+                    <div class="bg-white rounded-lg p-4 shadow-md">
+                        <h3 class="text-lg font-semibold mb-2">Total Departments for Posts</h3>
+                        <p class="text-gray-600">10</p>
+                    </div>
+                    
+                    <!-- Total Scheduled Interviews Card -->
+                    <div class="bg-white rounded-lg p-4 shadow-md">
+                        <h3 class="text-lg font-semibold mb-2">Total Scheduled Interviews</h3>
+                        <p class="text-gray-600">50</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+          
+
+        <!--ending job listing header-->
+
+
+        <!-- Job Listings Table -->
+        <div class="overflow-x-auto mb-8">
+            <table class="w-full table-auto bg-white shadow-md rounded-lg">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="px-4 py-2">Job Title</th>
+                        <th class="px-4 py-2">Location</th>
+                        <th class="px-4 py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-2">Software Engineer</td>
+                        <td class="px-4 py-2">New York</td>
+                        <td class="px-4 py-2">
+                            <button class="button-primary mr-2">View</button>
+                            <button class="button-secondary mr-2">Update</button>
+                            <button class="button-secondary">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2">Data Analyst</td>
+                        <td class="px-4 py-2">San Francisco</td>
+                        <td class="px-4 py-2">
+                            <button class="button-primary mr-2">View</button>
+                            <button class="button-secondary mr-2">Update</button>
+                            <button class="button-secondary">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2">Marketing Manager</td>
+                        <td class="px-4 py-2">London</td>
+                        <td class="px-4 py-2">
+                            <button class="button-primary mr-2">View</button>
+                            <button class="button-secondary mr-2">Update</button>
+                            <button class="button-secondary">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}

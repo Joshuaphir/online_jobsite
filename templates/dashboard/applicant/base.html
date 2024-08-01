@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Website{% endblock %}</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .section-heading {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .section-content {
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-height: 80vh; /* Minimum height for main content */
+        }
+        .profile-info img {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px; /* Adjusted border radius */
+        }
+        .form-label {
+            font-weight: 600;
+        }
+        .form-input {
+            border: 1px solid #cbd5e0;
+        }
+        .form-input:focus {
+            border-color: #63b3ed;
+            box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.5);
+        }
+        .form-button {
+            background-color: #3182ce;
+            transition: background-color 0.3s;
+        }
+        .form-button:hover {
+            background-color: #2b6cb0;
+        }
+        :root {
+            --main-color: #4a76a8;
+        }
+        .bg-main-color {
+            background-color: var(--main-color);
+        }
+        .text-main-color {
+            color: var(--main-color);
+        }
+        .border-main-color {
+            border-color: var(--main-color);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-gray-700 shadow-lg">
+        <nav class="container mx-auto py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-50 mr-4">Job Website</h1>
+            <div class="text-gray-50 flex items-center space-x-6">
+                <!-- Centered links -->
+                <a href="{% url 'profile' %}" class="hidden md:inline-block">Profile</a>
+                <a href="{% url 'applications' %}" class="hidden md:inline-block">Applications</a>
+                <a href="{% url 'applicant-joblist' %}" class="hidden md:inline-block">Jobs</a>
+                <a href="{% url 'update-cv-view' %}" class="hidden md:inline-block">Resume</a>
+                <!-- Dropdown link -->
+                <div class="relative">
+                    <button class="md:hidden pr-16">Menu</button>
+                    <div class="hidden md:absolute md:left-0 md:bg-gray-900 md:text-gray-50 md:py-2 md:mt-2 md:rounded md:shadow-lg">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-800">Dropdown Link 1</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-800">Dropdown Link 2</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Logout button on the right -->
+            <a href="#" class="text-gray-50 ml-auto sm:pr-10 hidden md:inline-block">Logout</a>
+        </nav>
+    </header>
+
+    <!-- Main content and footer wrapper -->
+    <div class="flex-grow">
+        <!-- Content block -->
+        <div class="container mx-auto py-10">
+            {% block content %}
+            <!-- This is where content specific to each page will go -->
+            {% endblock %}
+        </div>
+    </div>
+
+
+    <!-- JavaScript -->
+    <script>
+        // JavaScript for handling active links
+        const links = document.querySelectorAll('nav a');
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                links.forEach(otherLink => otherLink.classList.remove('text-yellow-400'));
+                link.classList.add('text-yellow-400');
+            });
+        });
+
+        // JavaScript for responsive dropdown
+        const dropdownBtn = document.querySelector('.relative button');
+        const dropdownMenu = document.querySelector('.relative div');
+
+        dropdownBtn.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Website Title{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <!-- Navigation -->
+    <nav class="bg-gray-700 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center flex-no-shrink text-white mr-6">
+                <span class="font-semibold text-xl tracking-tight">Website Name</span>
+            </div>
+            <div class="block lg:hidden">
+                <button id="menu-toggle" class="text-white focus:outline-none">
+                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                        <path d="M4 5h16v2H4zM4 11h16v2H4zM4 17h16v2H4z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden" id="mobile-menu">
+                <div class="lg:flex-grow"></div>
+                <div class="flex items-center">
+                    <a href="{% url 'register-recruiter' %}" class="text-white mr-4 hover:text-gray-300">Sign Up</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="{% url 'login' %}" class="text-white ml-4 hover:text-gray-300">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container mx-auto py-8">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 p-4 mt-8 text-center text-white">
+        <p>&copy; {{ year }} Your Website Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript to handle mobile menu toggle
+        document.getElementById('menu-toggle').onclick = function() {
+            var menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        };
+    </script>
+
+</body>
+</html>

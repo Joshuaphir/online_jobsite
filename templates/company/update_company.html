@@ -1,0 +1,35 @@
+{% extends 'users/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+create company
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card card-container">
+        <form class="form-signin" method="post" action="">
+            {% csrf_token %}
+            <div>
+                <label>company name</label>
+                {% render_field form.name class="form-control" %}
+            </div>
+            <div>
+                <label>established date</label>
+                {% render_field form.est_date class="form-control" %}
+            </div>
+            <div>
+                <label>location</label>
+                {% render_field form.district class="form-control" %}
+            </div>
+            <div>
+                <label>company headquater</label>
+                {% render_field form.headQuaters class="form-control" %}
+            </div>
+            <label>region</label>
+            {% render_field form.region class="form-control" %}
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+        </form><!-- /form -->
+    </div><!-- /card-container -->
+</div><!-- /container -->
+{% endblock %}

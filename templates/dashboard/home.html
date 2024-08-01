@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1.5s ease-out;
+        }
+        .visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex items-center justify-between flex-wrap">
+            <div class="flex items-center flex-no-shrink text-white mr-6">
+                <span class="font-semibold text-xl tracking-tight">Website Name</span>
+            </div>
+            <div class="block lg:hidden">
+                <button id="menu-toggle" class="text-white focus:outline-none">
+                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                        <path d="M4 5h16v2H4zM4 11h16v2H4zM4 17h16v2H4z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden" id="mobile-menu">
+                <div class="text-sm lg:flex-grow">
+                    <a href="#features" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
+                        Recruiters
+                    </a>
+                    <a href="#features" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
+                        Vacancies
+                    </a>
+                    <a href="#testimonials" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4">
+                        Testimonials
+                    </a>
+                    <a href="#contact" class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300">
+                        Contact
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <a href="{% url 'register-recruiter' %}" class="text-white mr-4 hover:text-gray-300">Sign Up</a>
+                    <span class="text-gray-400">|</span>
+                    <a href="{% url 'login' %}" class="text-white ml-4 hover:text-gray-300">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+
+    <!-- Header -->
+    <header class="bg-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-3xl font-bold mb-2">Welcome to Our Website</h1>
+            <h3 class="text-2xl mb-8">Don't miss the opportunity to secure your dream job</h3>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Apply Now
+            </button>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="bg-gray-100 py-8" id="features">
+        <div class="container mx-auto px-6">
+            <h2 class="w-full my-2 text-3xl font-bold leading-tight text-center text-gray-800">Recruiters</h2>
+            <div class="w-full mb-4">
+                <div class="h-1 mx-auto bg-blue-500 w-64 opacity-25 my-0 py-0 rounded-t"></div>
+            </div>
+            <div class="flex flex-wrap">
+                <div class="w-full md:w-1/3 p-6 flex flex-col fade-in">
+                     <!--card-->
+                     <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:border-blue-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="/docs/images/blog/image-4.jpg" alt="">
+                        <div class="flex flex-col justify-between p-4 leading-normal">
+                            <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        </div>
+                    </a>
+                    <!--end card-->
+                </div>
+                <div class="w-full md:w-1/3 p-6 flex flex-col fade-in">
+                    <!--card-->
+                    <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:border-blue-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="/docs/images/blog/image-4.jpg" alt="">
+                        <div class="flex flex-col justify-between p-4 leading-normal">
+                            <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        </div>
+                    </a>
+                    <!--end card-->
+                </div>
+                <div class="w-full md:w-1/3 p-6 flex flex-col fade-in">
+                     <!--card-->
+                     <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:border-blue-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="/docs/images/blog/image-4.jpg" alt="">
+                        <div class="flex flex-col justify-between p-4 leading-normal">
+                            <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        </div>
+                    </a>
+                    <!--end card-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="bg-white border-b py-8" id="testimonials">
+        <div class="container mx-auto px-6">
+            <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center text-gray-800">What People Say</h1>
+            <div class="w-full mb-4">
+                <div class="h-1 mx-auto bg-blue-500 w-64 opacity-25 my-0 py-0 rounded-t"></div>
+            </div>
+            <div class="w-full md:w-1/3 p-6 flex flex-col fade-in">
+                <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+                    <p class="w-full text-gray-600 text-xs md:text-sm px-6">"This Website helped me secure my dream job! Highly recommend to anyone looking for a similar solution."</p>
+                    <div class="w-full font-bold text-xl text-gray-800 px-6">John Doe</div>
+                    <p class="text-gray-600 text-xs md:text-sm px-6">CEO, Company Inc.</p>
+                </div
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="bg-gray-300 py-8" id="contact">
+        <div class="container mx-auto px-6">
+            <h1 class="w-full my-2 text-3xl font-bold leading-tight text-center text-gray-800">Contact Us</h1>
+            <div class="w-full mb-4">
+                <div class="h-1 mx-auto bg-blue-500 w-64 opacity-25 my-0 py-0 rounded-t"></div>
+            </div>
+            <div class="flex items-center justify-center">
+                <form class="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">
+                                Name
+                            </label>
+                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="name" type="text" placeholder="Jane Doe">
+                        </div>
+                        <div class="w-full md:w-1/2 px-3">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
+                                Email
+                            </label>
+                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email" placeholder="example@email.com">
+                        </div>
+                    </div>
+                    <div class="w-full px-3 mb-6">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="message">
+                            Message
+                        </label>
+                        <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="message" placeholder="Enter your message"></textarea>
+                    </div>
+                    <div class="w-full px-3 mb-6">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+<script>
+    // Smooth Scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+        const visibility = mobileMenu.style.display;
+        mobileMenu.style.display = visibility === 'block' ? 'none' : 'block';
+    });
+
+    // Scroll Animation for fade-in elements
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+    });
+</script>

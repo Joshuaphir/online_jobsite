@@ -1,0 +1,75 @@
+{% extends 'resume/resume_base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Update Resume
+{% endblock %}
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="mx-4 min-h-screen max-w-screen-xl sm:mx-8 xl:mx-auto">
+        <h1 class="text-3xl font-semibold mb-4">Settings</h1>
+        <hr class="my-4 border-gray-300">
+        <div class="flex">
+            <!-- Sidebar Menu -->
+            <div class="col-span-2 hidden sm:block mr-4">
+                <ul id="settingsMenu">
+                    <li class="mt-5 cursor-pointer border-l-2 border-l-blue-700 px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"><a href="{% url 'update-company' %}">Accounts</a></li>
+                    <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 text-blue-700 hover:text-blue-700"><a href="{% url 'update-company' %}">Applicants</a></li>
+                    <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"><a href="#jobs">Jobs</a></li>
+                    <li class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"><a href="#notifications">Notifications</a></li>
+                </ul>
+            </div>
+            <!-- End Sidebar Menu -->
+            
+            <!-- Form Section -->
+            <div class="flex-1">
+                <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-3xl">
+                    <form class="px-6 py-8 space-y-6" method="post" action="">
+                        <h2 class="text-xl font-semibold mb-6">Create Job</h2>
+                        {% csrf_token %}
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label for="title" class="block text-gray-700 font-bold mb-1">Job Title</label>
+                                {% render_field form.title id="title" class="input-field" %}
+                            </div>
+                            <div>
+                                <label for="location" class="block text-gray-700 font-bold mb-1">Location</label>
+                                {% render_field form.location id="location" class="input-field" %}
+                            </div>
+                            <div>
+                                <label for="salary" class="block text-gray-700 font-bold mb-1">Salary</label>
+                                {% render_field form.salary id="salary" class="input-field" %}
+                            </div>
+                            <div>
+                                <label for="requirements" class="block text-gray-700 font-bold mb-1">Requirements</label>
+                                {% render_field form.requirements|attr:"rows:3" id="requirements" class="input-field" %}
+                            </div>
+                            <div>
+                                <label for="duties" class="block text-gray-700 font-bold mb-1">Duties</label>
+                                {% render_field form.duties|attr:"rows:3" id="duties" class="input-field" %}
+                            </div>
+                            <div>
+                                <label for="experience" class="block text-gray-700 font-bold mb-1">Experience</label>
+                                {% render_field form.experience|attr:"rows:3" id="experience" class="input-field" %}
+                            </div>
+                            <div>
+                                <label for="ideal_candidate" class="block text-gray-700 font-bold mb-1">Qualification</label>
+                                {% render_field form.ideal_candidate|attr:"rows:3" id="ideal_candidate" class="input-field" %}
+                            </div>
+                            <div>
+                                <label for="is_available" class="block text-gray-700 font-bold mb-1">Is this Job available</label>
+                                {% render_field form.is_available id="is_available" class="input-field" %}
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End Form Section -->
+        </div>
+        <!-- End Main Content -->
+    </div>
+{% endblock %}

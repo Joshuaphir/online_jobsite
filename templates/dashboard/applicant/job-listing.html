@@ -1,0 +1,107 @@
+{% extends 'dashboard/applicant/base.html' %}
+{% load humanize %}
+{% block title %}Job Listings - Applicant Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h2 class="text-2xl font-bold mb-6">Explore Jobs</h2>
+
+    <!-- Filter Section -->
+    <div class="flex flex-wrap gap-4 mb-8">
+        <!-- Location Filter -->
+        <div class="flex-1 relative">
+            <input type="text" id="location-filter" class="w-full p-3 border rounded-lg shadow-sm placeholder-gray-400" placeholder="Location">
+            <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <svg class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 8v4m0 0l-2-2m2 2l2-2" />
+                </svg>
+            </span>
+        </div>
+
+        <!-- Qualification Filter -->
+        <div class="flex-1 relative">
+            <input type="text" id="qualification-filter" class="w-full p-3 border rounded-lg shadow-sm placeholder-gray-400" placeholder="Qualification">
+            <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <svg class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 8v4m0 0l-2-2m2 2l2-2" />
+                </svg>
+            </span>
+        </div>
+
+        <!-- Classification Filter -->
+        <div class="flex-1 relative">
+            <select id="classification-filter" class="w-full p-3 border rounded-lg shadow-sm appearance-none">
+                <option value="">Job Classification</option>
+                <option value="Accounting">Accounting</option>
+                <option value="IT">IT</option>
+                <option value="Human Resource">Human Resource</option>
+                <!-- Add more classifications as needed -->
+            </select>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <svg class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 8v4m0 0l-2-2m2 2l2-2" />
+                </svg>
+            </span>
+        </div>
+
+        <!-- Company Filter -->
+        <div class="flex-1 relative">
+            <input type="text" id="company-filter" class="w-full p-3 border rounded-lg shadow-sm placeholder-gray-400" placeholder="Company">
+            <span class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <svg class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 8v4m0 0l-2-2m2 2l2-2" />
+                </svg>
+            </span>
+        </div>
+    </div>
+
+    <!-- Job Listings -->
+    <div id="job-list" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {% for job in jobs %}
+        <!-- Job Card -->
+        <div class="p-6 border rounded-lg bg-white shadow-md">
+            <h3 class="font-semibold">{{ job.title }}</h3>
+            <p class="text-gray-800 mt-2 m-3">{{ job.post_overview }}<small class="px-4 m-3 text-gray-500">({{ job.timestamp|naturaltime}})</small></p>
+            <a href="{% url 'jobdetails' job.id %}" class="mt-4 m-3 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">View Details</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+    $(document).ready(function() {
+        function filterJobs() {
+            var location = $('#location-filter').val().toLowerCase();
+            var qualification = $('#qualification-filter').val().toLowerCase();
+            var classification = $('#classification-filter').val().toLowerCase();
+            var company = $('#company-filter').val().toLowerCase();
+
+            $('#job-list > div').each(function() {
+                var jobLocation = $(this).data('location').toLowerCase();
+                var jobQualification = $(this).data('qualification').toLowerCase();
+                var jobClassification = $(this).data('classification').toLowerCase();
+                var jobCompany = $(this).data('company').toLowerCase();
+
+                if (
+                    (location === "" || jobLocation.includes(location)) &&
+                    (qualification === "" || jobQualification.includes(qualification)) &&
+                    (classification === "" || jobClassification.includes(classification)) &&
+                    (company === "" || jobCompany.includes(company))
+                ) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+
+        $('#location-filter, #qualification-filter, #classification-filter, #company-filter').on('input change', filterJobs);
+    });
+</script>
+{% endblock %}

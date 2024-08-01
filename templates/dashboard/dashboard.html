@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Website{% endblock %}</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Your custom CSS -->
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-gray-700 shadow-lg">
+        <nav class="container mx-auto py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-50 mr-4">RapidTutorials</h1>
+            <div class="text-gray-50 flex items-center space-x-6">
+                <!-- Centered links -->
+                <a href="#" class="hidden md:inline-block">Link 1</a>
+                <a href="#" class="hidden md:inline-block">Link 2</a>
+                <!-- Dropdown link -->
+                <div class="relative">
+                    <button class="md:hidden">Menu</button>
+                    <div class="hidden md:absolute md:left-0 md:bg-gray-900 md:text-gray-50 md:py-2 md:mt-2 md:rounded md:shadow-lg">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-800">Dropdown Link 1</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-800">Dropdown Link 2</a>
+                    </div>
+                </div>
+                <a href="#" class="hidden md:inline-block">Link 3</a>
+                <a href="#" class="hidden md:inline-block">Link 4</a>
+            </div>
+            <!-- Logout button on the right -->
+            <a href="#" class="text-gray-50 ml-auto">Logout</a>
+        </nav>
+    </header>
+
+    <!-- Content block -->
+    <div class="container mx-auto">
+        {% block content %}
+        <!-- This is where content specific to each page will go -->
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-50 py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // JavaScript for handling active links
+        const links = document.querySelectorAll('nav a');
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                links.forEach(otherLink => otherLink.classList.remove('text-yellow-400'));
+                link.classList.add('text-yellow-400');
+            });
+        });
+
+        // JavaScript for responsive dropdown
+        const dropdownBtn = document.querySelector('.relative button');
+        const dropdownMenu = document.querySelector('.relative div');
+
+        dropdownBtn.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>
